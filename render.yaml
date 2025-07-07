@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: huffman-backend
+    env: node
+    plan: free
+    buildCommand: cd Backend && npm install
+    startCommand: cd Backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    autoDeploy: true
+    rootDir: Backend
+
+  - type: static
+    name: huffman-frontend
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    autoDeploy: true 
