@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "https://compressor-backend.onrender.com";
+
 function App() {
   const [file, setFile] = useState(null);
   const [downloadUrl, setDownloadUrl] = useState("");
@@ -32,7 +34,7 @@ function App() {
     const endpoint = type === "compress" ? "compress" : "decompress";
 
     const response = await axios.post(
-      `http://localhost:5000/${endpoint}`,
+      `${BACKEND_URL}/${endpoint}`,
       formData,
       {
         responseType: "blob",
